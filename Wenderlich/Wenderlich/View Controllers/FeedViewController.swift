@@ -18,9 +18,11 @@ class FeedViewController: UIViewController {
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var tableView: UITableView!
     
+    var dataManager: FeedProvider = DataManager.shared
     var data: [FeedItem] = []
     var currentList: [FeedItem] = []
     var displayMode = DisplayMode.all
+    
     
     // MARK: - UIViewController Overrides
     
@@ -50,15 +52,25 @@ class FeedViewController: UIViewController {
     // MARK: - Misc Methods
     
     func loadSampleData() {
-        let feedItem1 = FeedItem(name: "Article 1", artworkURL: nil, itemDescription: "Description 1", releaseDate: Date(), contentType: .article)
-        let feedItem2 = FeedItem(name: "Article 2", artworkURL: nil, itemDescription: "Description 2", releaseDate: Date().addingTimeInterval(2000), contentType: .article)
-        let feedItem3 = FeedItem(name: "Article 3", artworkURL: nil, itemDescription: "Description 3", releaseDate: Date().addingTimeInterval(4000), contentType: .article)
+//        let feedItem1 = FeedItem(name: "Article 1", artworkURL: nil, itemDescription: "Description 1", releaseDate: Date(), contentType: .article)
+//        let feedItem2 = FeedItem(name: "Article 2", artworkURL: nil, itemDescription: "Description 2", releaseDate: Date().addingTimeInterval(2000), contentType: .article)
+//        let feedItem3 = FeedItem(name: "Article 3", artworkURL: nil, itemDescription: "Description 3", releaseDate: Date().addingTimeInterval(4000), contentType: .article)
+//
+//        let feedItem4 = FeedItem(name: "Video 1", artworkURL: nil, itemDescription: "Description 4", releaseDate: Date().addingTimeInterval(1000), contentType: .video)
+//        let feedItem5 = FeedItem(name: "Video 2", artworkURL: nil, itemDescription: "Description 5", releaseDate: Date().addingTimeInterval(3000), contentType: .video)
+//        let feedItem6 = FeedItem(name: "Video 3", artworkURL: nil, itemDescription: "Description 6", releaseDate: Date().addingTimeInterval(5000), contentType: .video)
+//
+//        data = [feedItem1, feedItem2, feedItem3, feedItem4, feedItem5, feedItem6]
         
-        let feedItem4 = FeedItem(name: "Video 1", artworkURL: nil, itemDescription: "Description 4", releaseDate: Date().addingTimeInterval(1000), contentType: .video)
-        let feedItem5 = FeedItem(name: "Video 2", artworkURL: nil, itemDescription: "Description 5", releaseDate: Date().addingTimeInterval(3000), contentType: .video)
-        let feedItem6 = FeedItem(name: "Video 3", artworkURL: nil, itemDescription: "Description 6", releaseDate: Date().addingTimeInterval(5000), contentType: .video)
-        
-        data = [feedItem1, feedItem2, feedItem3, feedItem4, feedItem5, feedItem6]
+        Task {
+            do {
+                let articles = try await dataManager.allItems()
+                data = articles
+                refreshCurrentList()
+            } catch {
+                // TODO: Handle error
+            }
+        }
     }
 
     func setupTableView() {
@@ -73,34 +85,38 @@ class FeedViewController: UIViewController {
     }
     
     func refreshCurrentList() {
-        var newList = [FeedItem]()
-        
-        switch displayMode {
-        case .all:
-            newList.append(contentsOf: data)
-        case .articles:
-            newList.append(contentsOf: data.filter({ $0.contentType == .article }))
-        case .videos:
-            newList.append(contentsOf: data.filter({ $0.contentType == .video }))
+        Task {
+            var newList = [FeedItem]()
+
+            do {
+                let data: [FeedItem]
+                
+                switch displayMode {
+                case .all:
+                    data = try await dataManager.allItems()
+                case .articles:
+                    data = try await dataManager.articles()
+                case .videos:
+                    data = try await dataManager.videos()
+                }
+                
+                newList.append(contentsOf: data)
+            }
+            catch {
+                // TODO: Handle error
+            }
+            
+            currentList = newList
+            tableView.reloadData()
         }
-        
-        newList.sort(by: { $0.releaseDate > $1.releaseDate })
-        
-        currentList = newList
     }
     
-}
-
-
-extension FeedViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentList.count
+    func feedItem(at indexPath: IndexPath) -> FeedItem {
+        return currentList[indexPath.row]
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: FeedTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(reflecting: FeedTableViewCell.self), for: indexPath) as! FeedTableViewCell
-        
-        let feedItem = currentList[indexPath.row]
+    func populate(cell: FeedTableViewCell, at indexPath: IndexPath) {
+        let feedItem = feedItem(at: indexPath)
 
         cell.titleLabel.text = feedItem.name
         cell.descriptionLabel.text = feedItem.itemDescription
@@ -112,7 +128,33 @@ extension FeedViewController: UITableViewDataSource {
         default:
             cell.contentTypeLabel.text = "Mystery"
         }
+        cell.dateLabel.text = Constants.displayDateFormatter.string(from: feedItem.releaseDate)
+    }
+    
+}
+
+// MARK: - UITableViewDataSource Functions
+
+extension FeedViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return currentList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(reflecting: FeedTableViewCell.self), for: indexPath) as? FeedTableViewCell else {
+            fatalError("Failed to load FeedTableViewCell")
+        }
+        
+        populate(cell: cell, at: indexPath)
         
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate Functions
+
+extension FeedViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

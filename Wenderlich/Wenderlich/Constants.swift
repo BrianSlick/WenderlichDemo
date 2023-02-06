@@ -8,9 +8,16 @@
 import Foundation
 
 struct Constants {
-    static var dateFormatter: ISO8601DateFormatter {
+    static var serverDateFormatter: ISO8601DateFormatter {
         let dateFormatter = ISO8601DateFormatter()
         dateFormatter.formatOptions =  [.withInternetDateTime, .withFractionalSeconds]
+        return dateFormatter
+    }
+    
+    static var displayDateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
         return dateFormatter
     }
 }

@@ -24,6 +24,12 @@
 		368B3884298DB63D00EAEF5D /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368B3883298DB63D00EAEF5D /* JSONTests.swift */; };
 		36A9040A298F572E00877D65 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A90409298F572E00877D65 /* FeedTableViewCell.swift */; };
 		36A9040C298F574F00877D65 /* FeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36A9040B298F574F00877D65 /* FeedTableViewCell.xib */; };
+		36A9040E29906F8300877D65 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A9040D29906F8300877D65 /* DataManager.swift */; };
+		36A9041029906FAB00877D65 /* DataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A9040F29906FAB00877D65 /* DataManagerTests.swift */; };
+		36A9041129906FB600877D65 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A9040D29906F8300877D65 /* DataManager.swift */; };
+		36A90413299072D400877D65 /* FeedDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A90412299072D400877D65 /* FeedDownloader.swift */; };
+		36A9041429909E1E00877D65 /* videos.json in Resources */ = {isa = PBXBuildFile; fileRef = 36A90406298F20B400877D65 /* videos.json */; };
+		36A9041529909E1E00877D65 /* articles.json in Resources */ = {isa = PBXBuildFile; fileRef = 36A90405298F205D00877D65 /* articles.json */; };
 		36B6F703298F08DA002E92BD /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368B387A298D8ACC00EAEF5D /* FeedParser.swift */; };
 		36B6F704298F08DE002E92BD /* JSONStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368B3881298DB5BD00EAEF5D /* JSONStructure.swift */; };
 		36B6F706298F0D3C002E92BD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B6F705298F0D3C002E92BD /* Constants.swift */; };
@@ -62,6 +68,9 @@
 		36A90406298F20B400877D65 /* videos.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = videos.json; sourceTree = "<group>"; };
 		36A90409298F572E00877D65 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		36A9040B298F574F00877D65 /* FeedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedTableViewCell.xib; sourceTree = "<group>"; };
+		36A9040D29906F8300877D65 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		36A9040F29906FAB00877D65 /* DataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerTests.swift; sourceTree = "<group>"; };
+		36A90412299072D400877D65 /* FeedDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDownloader.swift; sourceTree = "<group>"; };
 		36B6F705298F0D3C002E92BD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +136,7 @@
 				368B3877298C8C0D00EAEF5D /* FeedItemTests.swift */,
 				368B387D298D8B0500EAEF5D /* FeedParserTests.swift */,
 				368B3883298DB63D00EAEF5D /* JSONTests.swift */,
+				36A9040F29906FAB00877D65 /* DataManagerTests.swift */,
 			);
 			path = WenderlichTests;
 			sourceTree = "<group>";
@@ -137,6 +147,8 @@
 				368B3875298C8BEE00EAEF5D /* FeedItem.swift */,
 				368B387A298D8ACC00EAEF5D /* FeedParser.swift */,
 				368B3881298DB5BD00EAEF5D /* JSONStructure.swift */,
+				36A9040D29906F8300877D65 /* DataManager.swift */,
+				36A90412299072D400877D65 /* FeedDownloader.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -258,7 +270,9 @@
 			files = (
 				368B3851298C899900EAEF5D /* LaunchScreen.storyboard in Resources */,
 				36A9040C298F574F00877D65 /* FeedTableViewCell.xib in Resources */,
+				36A9041429909E1E00877D65 /* videos.json in Resources */,
 				368B384E298C899800EAEF5D /* Assets.xcassets in Resources */,
+				36A9041529909E1E00877D65 /* articles.json in Resources */,
 				368B384C298C899800EAEF5D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,11 +293,13 @@
 			files = (
 				368B3876298C8BEE00EAEF5D /* FeedItem.swift in Sources */,
 				36A9040A298F572E00877D65 /* FeedTableViewCell.swift in Sources */,
+				36A90413299072D400877D65 /* FeedDownloader.swift in Sources */,
 				368B3849298C899800EAEF5D /* FeedViewController.swift in Sources */,
 				368B3845298C899800EAEF5D /* AppDelegate.swift in Sources */,
 				368B3882298DB5BD00EAEF5D /* JSONStructure.swift in Sources */,
 				36B6F706298F0D3C002E92BD /* Constants.swift in Sources */,
 				368B3847298C899800EAEF5D /* SceneDelegate.swift in Sources */,
+				36A9040E29906F8300877D65 /* DataManager.swift in Sources */,
 				368B387B298D8ACC00EAEF5D /* FeedParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +315,8 @@
 				36B6F703298F08DA002E92BD /* FeedParser.swift in Sources */,
 				368B385C298C899900EAEF5D /* WenderlichTests.swift in Sources */,
 				368B3880298D8B1C00EAEF5D /* TestData.swift in Sources */,
+				36A9041029906FAB00877D65 /* DataManagerTests.swift in Sources */,
+				36A9041129906FB600877D65 /* DataManager.swift in Sources */,
 				368B3879298C8C3D00EAEF5D /* FeedItem.swift in Sources */,
 				36B6F707298F0E03002E92BD /* Constants.swift in Sources */,
 			);

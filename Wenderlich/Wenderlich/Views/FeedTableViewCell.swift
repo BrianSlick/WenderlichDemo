@@ -12,4 +12,14 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var thumbnailImageView: UIImageView!
     @IBOutlet var contentTypeLabel: UILabel!
+    @IBOutlet var dateLabel: UILabel!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        descriptionLabel.text = nil
+        thumbnailImageView.image = nil
+        contentTypeLabel.text = nil
+        dateLabel.text = nil
+    }
 }

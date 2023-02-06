@@ -34,7 +34,7 @@ extension FeedItem {
         }
         
         let releaseDate: Date
-        if let date = Constants.dateFormatter.date(from: attributes.released_at) {
+        if let date = Constants.serverDateFormatter.date(from: attributes.released_at) {
             releaseDate = date
         } else {
             releaseDate = Date()

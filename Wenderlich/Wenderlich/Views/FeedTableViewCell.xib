@@ -41,13 +41,23 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6oG-Jl-8a0">
+                        <rect key="frame" x="45" y="125.66666666666667" width="26.666666666666671" height="14.333333333333329"/>
+                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="FF1-7R-AXH" firstAttribute="top" secondItem="P6U-62-pWV" secondAttribute="bottom" constant="8" symbolic="YES" id="2wO-Fj-a0S"/>
                     <constraint firstItem="FF1-7R-AXH" firstAttribute="leading" secondItem="HaH-sW-k4b" secondAttribute="trailing" constant="8" symbolic="YES" id="3j3-ug-goB"/>
+                    <constraint firstItem="6oG-Jl-8a0" firstAttribute="height" secondItem="yMg-mU-fbn" secondAttribute="height" id="7OF-hZ-7xl"/>
                     <constraint firstItem="HaH-sW-k4b" firstAttribute="leading" secondItem="oFO-2h-UVG" secondAttribute="leading" constant="20" symbolic="YES" id="8wz-Kd-clm"/>
+                    <constraint firstItem="6oG-Jl-8a0" firstAttribute="leading" secondItem="yMg-mU-fbn" secondAttribute="trailing" constant="8" symbolic="YES" id="9qz-Ju-Tae"/>
                     <constraint firstItem="P6U-62-pWV" firstAttribute="leading" secondItem="oFO-2h-UVG" secondAttribute="leading" constant="20" symbolic="YES" id="JCH-y3-bA0"/>
                     <constraint firstAttribute="trailing" secondItem="FF1-7R-AXH" secondAttribute="trailing" constant="20" symbolic="YES" id="KiP-vE-OaX"/>
+                    <constraint firstAttribute="bottom" secondItem="6oG-Jl-8a0" secondAttribute="bottom" id="NUu-Af-ucz"/>
                     <constraint firstItem="P6U-62-pWV" firstAttribute="top" secondItem="oFO-2h-UVG" secondAttribute="top" constant="20" symbolic="YES" id="WHk-dZ-G5S"/>
                     <constraint firstAttribute="trailing" secondItem="P6U-62-pWV" secondAttribute="trailing" constant="20" symbolic="YES" id="Xcn-hP-dCd"/>
                     <constraint firstAttribute="bottom" secondItem="yMg-mU-fbn" secondAttribute="bottom" id="ds1-xw-9gb"/>
@@ -59,6 +69,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="contentTypeLabel" destination="yMg-mU-fbn" id="kJm-Wa-90N"/>
+                <outlet property="dateLabel" destination="6oG-Jl-8a0" id="ipE-cK-meD"/>
                 <outlet property="descriptionLabel" destination="HaH-sW-k4b" id="BVO-R0-VE0"/>
                 <outlet property="thumbnailImageView" destination="FF1-7R-AXH" id="W3W-NU-Mal"/>
                 <outlet property="titleLabel" destination="P6U-62-pWV" id="Hm6-Ny-zbm"/>
