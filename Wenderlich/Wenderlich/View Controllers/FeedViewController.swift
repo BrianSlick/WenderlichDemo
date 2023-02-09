@@ -1,11 +1,12 @@
 //
-//  ViewController.swift
+//  FeedViewController.swift
 //  Wenderlich
 //
 //  Created by Brian Slick on 2/2/23.
 //
 
 import UIKit
+import SDWebImage
 
 enum DisplayMode: Int {
     case all
@@ -19,7 +20,7 @@ class FeedViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var dataManager: FeedProvider = DataManager.shared
-    var data: [FeedItem] = []
+//    var data: [FeedItem] = []
     var currentList: [FeedItem] = []
     var displayMode = DisplayMode.all
     
@@ -46,10 +47,9 @@ class FeedViewController: UIViewController {
         let newMode: DisplayMode = DisplayMode(rawValue: index) ?? .all
         displayMode = newMode
         refreshCurrentList()
-        tableView.reloadData()
     }
     
-    // MARK: - Misc Methods
+    // MARK: - Misc Functions
     
     func loadSampleData() {
 //        let feedItem1 = FeedItem(name: "Article 1", artworkURL: nil, itemDescription: "Description 1", releaseDate: Date(), contentType: .article)
@@ -65,7 +65,7 @@ class FeedViewController: UIViewController {
         Task {
             do {
                 let articles = try await dataManager.allItems()
-                data = articles
+//                data = articles
                 refreshCurrentList()
             } catch {
                 // TODO: Handle error
@@ -129,6 +129,8 @@ class FeedViewController: UIViewController {
             cell.contentTypeLabel.text = "Mystery"
         }
         cell.dateLabel.text = Constants.displayDateFormatter.string(from: feedItem.releaseDate)
+        
+        cell.thumbnailImageView.sd_setImage(with: feedItem.artworkURL, placeholderImage: UIImage(named: "kodeco_logo"))
     }
     
 }
