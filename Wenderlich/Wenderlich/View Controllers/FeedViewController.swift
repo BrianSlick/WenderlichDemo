@@ -30,7 +30,7 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadSampleData()
+//        loadSampleData()
         setupTableView()
     }
 
@@ -51,27 +51,29 @@ class FeedViewController: UIViewController {
     
     // MARK: - Misc Functions
     
-    func loadSampleData() {
-//        let feedItem1 = FeedItem(name: "Article 1", artworkURL: nil, itemDescription: "Description 1", releaseDate: Date(), contentType: .article)
-//        let feedItem2 = FeedItem(name: "Article 2", artworkURL: nil, itemDescription: "Description 2", releaseDate: Date().addingTimeInterval(2000), contentType: .article)
-//        let feedItem3 = FeedItem(name: "Article 3", artworkURL: nil, itemDescription: "Description 3", releaseDate: Date().addingTimeInterval(4000), contentType: .article)
+//    func loadSampleData() {
+////        let feedItem1 = FeedItem(name: "Article 1", artworkURL: nil, itemDescription: "Description 1", releaseDate: Date(), contentType: .article)
+////        let feedItem2 = FeedItem(name: "Article 2", artworkURL: nil, itemDescription: "Description 2", releaseDate: Date().addingTimeInterval(2000), contentType: .article)
+////        let feedItem3 = FeedItem(name: "Article 3", artworkURL: nil, itemDescription: "Description 3", releaseDate: Date().addingTimeInterval(4000), contentType: .article)
+////
+////        let feedItem4 = FeedItem(name: "Video 1", artworkURL: nil, itemDescription: "Description 4", releaseDate: Date().addingTimeInterval(1000), contentType: .video)
+////        let feedItem5 = FeedItem(name: "Video 2", artworkURL: nil, itemDescription: "Description 5", releaseDate: Date().addingTimeInterval(3000), contentType: .video)
+////        let feedItem6 = FeedItem(name: "Video 3", artworkURL: nil, itemDescription: "Description 6", releaseDate: Date().addingTimeInterval(5000), contentType: .video)
+////
+////        data = [feedItem1, feedItem2, feedItem3, feedItem4, feedItem5, feedItem6]
 //
-//        let feedItem4 = FeedItem(name: "Video 1", artworkURL: nil, itemDescription: "Description 4", releaseDate: Date().addingTimeInterval(1000), contentType: .video)
-//        let feedItem5 = FeedItem(name: "Video 2", artworkURL: nil, itemDescription: "Description 5", releaseDate: Date().addingTimeInterval(3000), contentType: .video)
-//        let feedItem6 = FeedItem(name: "Video 3", artworkURL: nil, itemDescription: "Description 6", releaseDate: Date().addingTimeInterval(5000), contentType: .video)
+//        refreshCurrentList()
 //
-//        data = [feedItem1, feedItem2, feedItem3, feedItem4, feedItem5, feedItem6]
-        
-        Task {
-            do {
-                let articles = try await dataManager.allItems()
-//                data = articles
-                refreshCurrentList()
-            } catch {
-                // TODO: Handle error
-            }
-        }
-    }
+////        Task {
+////            do {
+//////                let articles = try await dataManager.allItems()
+//////                data = articles
+////                refreshCurrentList()
+////            } catch {
+////                // TODO: Handle error
+////            }
+////        }
+//    }
 
     func setupTableView() {
         let className = "FeedTableViewCell"
